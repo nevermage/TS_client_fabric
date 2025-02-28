@@ -2,10 +2,13 @@ import {getFileContent} from "./modules/fileReader";
 import {ClientFactory} from "./factories/clientFactory";
 import {Client} from "./entities/client";
 import {fetchData} from "./modules/apiClient";
+import dotenv from "dotenv";
 
-main('clients_data.json');
+dotenv.config();
 
-async function main(filename: string) {
+main(process.env.API_URL as string, 'clients_data.json');
+
+async function main(url: string, filename: string) {
     try {
         const fileContent: string = await getFileContent(filename);
         const clientsFromJson: Client[] = ClientFactory.fromJSON(fileContent);
@@ -20,7 +23,7 @@ async function main(filename: string) {
         ]);
         console.log('clientsFromArray', clientsFromArray);
 
-        const clientsFromApiResponse = ClientFactory.fromApiResponse(await fetchData('https://url'));
+        const clientsFromApiResponse = ClientFactory.fromApiResponse(await fetchData(url));
         console.log('clientsFromApiResponse', clientsFromApiResponse);
 
     } catch (e) {
