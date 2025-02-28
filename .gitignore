@@ -1,5 +1,6 @@
 *.csv
 clients_data.json
+apiResponse.json
 
 # Node.js dependencies
 node_modules/

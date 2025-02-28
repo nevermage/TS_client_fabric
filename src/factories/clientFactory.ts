@@ -16,8 +16,8 @@ export class ClientFactory {
         )
     }
 
-    static fromApiResponse(apiResponse: string): Client[] {
-        return this.objectsToClients(JSON.parse(apiResponse));
+    static fromApiResponse(apiResponse: {data: object[]}): Client[] {
+        return this.objectsToClients(apiResponse.data);
     }
 
     private static objectsToClients(objects: Record<string, any>): Client[] {
