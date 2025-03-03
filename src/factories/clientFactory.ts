@@ -6,12 +6,12 @@ export class ClientFactory {
     }
 
     static fromStringArrays(clients: string[][]): Client[] {
-        return clients.map((clientArray: string[]) =>
+        return clients.map(([id, username, age, email]: string[]) =>
             new Client(
-                parseInt(clientArray[0]),
-                clientArray[1],
-                parseInt(clientArray[2]),
-                clientArray[3],
+                parseInt(id),
+                username,
+                parseInt(age),
+                email,
             )
         )
     }
